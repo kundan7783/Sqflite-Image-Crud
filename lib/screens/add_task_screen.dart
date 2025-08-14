@@ -62,7 +62,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     provider.addStudent();
                     Navigator.pop(context);
                     provider.addNameController.clear();
-                    provider.imageStore==null;
+                    provider.clearImage();
                     FocusScope.of(context).unfocus();
                   }
                 }, child: Text("Add Task")),

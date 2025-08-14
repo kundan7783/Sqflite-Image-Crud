@@ -68,4 +68,19 @@ class HomeProvider with ChangeNotifier {
     userData= await dbHelper.fetchAllData();
     notifyListeners();
   }
+  void updateStudent(int id,{required String oldImagePath}){
+    dbHelper.updateData({
+      DbHelper.COLUMN_NAME : updateNameController.text.toString(),
+      DbHelper.COLUMN_IMAGE_PATH : imageStore == null ? oldImagePath : imageStore!.path
+    }, id: id);
+    getAllData();
+  }
+  Future<void> deleteStudent(int id) async {
+    await dbHelper.deleteData(id: id);
+    getAllData();
+  }
+  clearImage(){
+    imageStore=null;
+    notifyListeners();
+  }
 }

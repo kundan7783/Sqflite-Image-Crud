@@ -39,4 +39,13 @@ class DbHelper {
     var db = await getDB();
     return db.query(TABLE_TASK);
   }
+  Future<void> updateData(Map<String,dynamic> data,{required int id}) async {
+    var db = await getDB();
+    db.update(TABLE_TASK, data,where: "$COLUMN_ID =?",whereArgs: [id]);
+  }
+  Future<bool> deleteData({required int id}) async {
+    var db = await getDB();
+    int delete= await db.delete(TABLE_TASK,where: "$COLUMN_ID =?",whereArgs: [id]);
+    return delete>0;
+  }
 }
