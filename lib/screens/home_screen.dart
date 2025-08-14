@@ -6,19 +6,8 @@ import 'package:sqlite_image_crud/screens/update_task_screen.dart';
 import 'package:sqlite_image_crud/utils/db_helper.dart';
 import '../providers/home_provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    Provider.of<HomeProvider>(context, listen: false).getAllData();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

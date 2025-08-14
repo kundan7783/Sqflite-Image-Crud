@@ -5,21 +5,16 @@ import 'package:provider/provider.dart';
 
 import '../providers/home_provider.dart';
 
-class UpdateTaskScreen extends StatefulWidget {
+class UpdateTaskScreen extends StatelessWidget {
   final int id;
   final String name;
   final String image;
   const UpdateTaskScreen({super.key, required this.id, required this.name, required this.image});
 
   @override
-  State<UpdateTaskScreen> createState() => _UpdateTaskScreenState();
-}
-
-class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
-  @override
   Widget build(BuildContext context) {
     var provider=Provider.of<HomeProvider>(context);
-    provider.updateNameController.text=widget.name;
+    provider.updateNameController.text=name;
     return Scaffold(
       appBar: AppBar(
         title: Text("Update Task Screen"),
@@ -31,7 +26,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 20),
           child: Column(
             children: [
-              CircleAvatar(radius: 80, backgroundImage: provider.imageStore==null?FileImage(File(widget.image)): FileImage(File(provider.imageStore!.path))),
+              CircleAvatar(radius: 80, backgroundImage: provider.imageStore==null?FileImage(File(image)): FileImage(File(provider.imageStore!.path))),
               SizedBox(height: 10,),
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -58,13 +53,8 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                 height: 50,
                 child: ElevatedButton(onPressed: (){
                   if (provider.globalKeyUpdate.currentState!.validate()) {
-                    if (provider.imageStore == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Please select a image")),
-                      );
-                      return;
-                    }
-                    provider.updateStudent(widget.id, oldImagePath: widget.image);
+
+                    provider.updateStudent(id, oldImagePath: image);
                     Navigator.pop(context);
                     provider.updateNameController.clear();
                     provider.clearImage();

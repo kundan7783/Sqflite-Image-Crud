@@ -14,6 +14,10 @@ class HomeProvider with ChangeNotifier {
   var globalKeyUpdate=GlobalKey<FormState>();
   TextEditingController updateNameController=TextEditingController();
 
+  HomeProvider(){
+    getAllData();
+  }
+
   List<Map<String,dynamic>> userData=[];
   Future<void> getCameraAccess() async {
     final ImagePicker picker = ImagePicker();
